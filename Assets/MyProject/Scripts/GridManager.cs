@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
     public GameObject bubble;
     public Transform group;
 	public int BubbleTypes = 5;
+	public int BubbleSpawnRows;
     public Vector3 initialPos;    
     [Range(0, 1)]
     public float gap;
@@ -30,6 +31,8 @@ public class GridManager : MonoBehaviour
     {
 		/** Set position of bubble group */
 		Compressor.Translate(new Vector3(0, initialPos.y - Compressor.position.y, 0));
+
+		if (rows < BubbleSpawnRows + 10) rows = BubbleSpawnRows + 10;
 	}
 
     private void Start()
@@ -297,28 +300,28 @@ public class GridManager : MonoBehaviour
     #region pirvate function 
     private string LoadLevelInfo()
     {
-		//using (StreamReader r = new StreamReader(GridData))
-		//{
-		//    string json = r.ReadToEnd();
-		//    return json;
-		//}
+        //using (StreamReader r = new StreamReader(GridData))
+        //{
+        //    string json = r.ReadToEnd();
+        //    return json;
+        //}
 
-		string levelData = "";
+        string leveldata = "";
 
-        for (int i = 0; i < rows; i++)
+        for (int i = 0; i < BubbleSpawnRows; i++)
         {
-			int columnNum = 6;
-			if (i % 2 == 0) columnNum++;
+            int columnnum = 6;
+            if (i % 2 == 0) columnnum++;
 
-            for (int j = 0; j < columnNum; j++)
+            for (int j = 0; j < columnnum; j++)
             {
-				levelData += ((i % BubbleTypes) + 1).ToString();
+                leveldata += ((i % BubbleTypes) + 1).ToString();
             }
 
-			levelData += "\n";
+            if(i != BubbleSpawnRows - 1) leveldata += "\n";
         }
 
-		return levelData;
+        return leveldata;
     }
 
     private void ArragementBubble(string level)
