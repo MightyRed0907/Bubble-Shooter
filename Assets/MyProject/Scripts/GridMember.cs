@@ -1,15 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GridMember : MonoBehaviour
 {
     //public GameObject parent;
     public Sprite[] sp;
-    public GameObject efxPrefab;
+	public GameObject efxPrefabBlock;
+    public GameObject efxPrefabPop;
 	public int row;
 	public int column;
 	public int kind;
 	public string state;
+
+
+	int _value;
+	public int Value
+    {
+		get { return _value; }
+		set 
+		{
+			_value = value;
+			valueTxt.text = _value.ToString();
+		}
+    }
+
+	[SerializeField]
+	Text valueTxt;
 
 	public const float POP_SPEED = 0.9f;
 	public const float EXPLODE_SPEED = 5f;
@@ -19,7 +36,24 @@ public class GridMember : MonoBehaviour
 
 	public void Update()
 	{
-		if (state == "Pop")
+		if (state == "Block")
+		{
+			CircleCollider2D cc = GetComponent<CircleCollider2D>();
+			if (cc != null)
+				cc.enabled = false;
+
+			if (!efxFlag)
+			{
+				efxFlag = true;
+				GameObject go = Instantiate(efxPrefabBlock);
+				go.transform.position = transform.position;
+			}
+
+			transform.localScale = transform.localScale * POP_SPEED;
+			if (transform.localScale.sqrMagnitude < 0.05f)
+				Destroy(gameObject);
+		}
+		else if (state == "Pop")
 		{
 			CircleCollider2D cc = GetComponent<CircleCollider2D>();
 			if (cc != null)
@@ -28,7 +62,7 @@ public class GridMember : MonoBehaviour
             if (!efxFlag)
             {
                 efxFlag = true;
-                GameObject go = Instantiate(efxPrefab);
+                GameObject go = Instantiate(efxPrefabPop);
                 go.transform.position = transform.position;
             }
 

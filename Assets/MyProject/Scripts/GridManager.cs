@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-
 public class GridManager : MonoBehaviour
 {
     [Header("Grid")]
@@ -122,6 +121,9 @@ public class GridManager : MonoBehaviour
 			SpriteRenderer spriteRenderer = bubbleClone.GetComponent<SpriteRenderer>();
 			if (spriteRenderer != null)			
                 spriteRenderer.sprite = gridMember.sp[gridMember.kind - 1];
+
+			// Set value
+			gridMember.Value = Random.Range(1, 6);
 		}
 		bubbleClone.SetActive(true);
 
@@ -149,7 +151,6 @@ public class GridManager : MonoBehaviour
 		int[] deltax = { -1, 0, -1, 0, -1, 1 };
 		int[] deltaxprime = { 1, 0, 1, 0, -1, 1 };
 		int[] deltay = { -1, -1, 1, 1, 0, 0 };
-
 
 		Queue<int[]> queue = new Queue<int[]>();
 		Queue<GameObject> objectQueue = new Queue<GameObject>();

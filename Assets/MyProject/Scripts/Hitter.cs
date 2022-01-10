@@ -62,6 +62,7 @@ public class Hitter : MonoBehaviour
                         GridMember gridMember = newBubble.GetComponent<GridMember>();
                         if (gridMember != null)
                             gridManager.Seek(gridMember.column, -gridMember.row, gridMember.kind);
+                        gridMember.state = "Block";
                     }
                 }
                 Launcher launcher = parent.GetComponent<Launcher>();
