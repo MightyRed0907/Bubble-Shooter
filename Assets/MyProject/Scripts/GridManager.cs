@@ -6,37 +6,40 @@ using System.IO;
 public class GridManager : MonoBehaviour
 {
     [Header("Grid")]
-    public int columns;
-    public int rows;
-    public GameObject bubble;
-    public Transform group;
+    public int Columns = 6;
+    public int Rows = 20;
+	public int BubbleSpawnRows = 10;
+
+	public GameObject Bubble;
+    public Transform Group;
 	public int BubbleTypes = 5;
-	public int BubbleSpawnRows;
-    public Vector3 initialPos;    
+	
+    public Vector3 InitialPos = new Vector3(-1.65f, 7, 0);
+	
     [Range(0, 1)]
-    public float gap;
+    public float Gap = 0.65f;
 
     [Header("Game")]
-    public GameObject youWin;
+    public GameObject YouWin;
 	//public GameObject youLose;
     public string GridData = "Assets/Data/level1.data";
 
     [Header("Fall down controller")]
     public Transform Compressor;
 
-    private GameObject[,] grid;
+    private GameObject[,] Grid;
 
     private void Awake()
     {
 		/** Set position of bubble group */
-		Compressor.Translate(new Vector3(0, initialPos.y - Compressor.position.y, 0));
+		Compressor.Translate(new Vector3(0, InitialPos.y - Compressor.position.y, 0));
 
-		if (rows < BubbleSpawnRows + 10) rows = BubbleSpawnRows + 10;
+		if (Rows < BubbleSpawnRows + 10) Rows = BubbleSpawnRows + 10;
 	}
 
     private void Start()
 	{
-		grid = new GameObject[columns, rows];
+		Grid = new GameObject[Columns, Rows];
 
 		string level = LoadLevelInfo();
         ArragementBubble(level);
@@ -44,51 +47,51 @@ public class GridManager : MonoBehaviour
 
     private void Update()
     {
-        Compressor.position = new Vector3(Compressor.position.x, initialPos.y, Compressor.position.z);
+        Compressor.position = new Vector3(Compressor.position.x, InitialPos.y, Compressor.position.z);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(new Vector3(initialPos.x+2f, initialPos.y, 0), new Vector3(5, .1f, 1));
+        Gizmos.DrawWireCube(new Vector3(InitialPos.x+2f, InitialPos.y, 0), new Vector3(5, .1f, 1));
     }
 
     public Vector3 Snap(Vector3 position)
 	{
-		Vector3 objectOffset = position - initialPos;
+		Vector3 objectOffset = position - InitialPos;
 		Vector3 objectSnap = new Vector3(
-			Mathf.Round(objectOffset.x / gap),
-			Mathf.Round(objectOffset.y / gap),
+			Mathf.Round(objectOffset.x / Gap),
+			Mathf.Round(objectOffset.y / Gap),
 			0f
 		);
 
 		if ((int)objectSnap.y % 2 != 0)
 		{
-			if (objectOffset.x > objectSnap.x * gap)			
+			if (objectOffset.x > objectSnap.x * Gap)			
 				objectSnap.x += 0.5f;
 			
 			else			
 				objectSnap.x -= 0.5f;			
 		}
-		return initialPos + objectSnap * gap;
+		return InitialPos + objectSnap * Gap;
 	}
 
     public GameObject Create(Vector2 position, int kind)
 	{
 		Vector3 snappedPosition = Snap(position);
-		int row = (int)Mathf.Round((snappedPosition.y - initialPos.y) / gap);
+		int row = (int)Mathf.Round((snappedPosition.y - InitialPos.y) / Gap);
 		int column = 0;
 		if (row % 2 != 0)		
-			column = (int)Mathf.Round((snappedPosition.x - initialPos.x) / gap - 0.5f);		
+			column = (int)Mathf.Round((snappedPosition.x - InitialPos.x) / Gap - 0.5f);		
 		else		
-			column = (int)Mathf.Round((snappedPosition.x - initialPos.x) / gap);		
+			column = (int)Mathf.Round((snappedPosition.x - InitialPos.x) / Gap);		
 
 
-		GameObject bubbleClone = (GameObject)Instantiate(bubble, snappedPosition, Quaternion.identity);
-        bubbleClone.transform.parent = group;
+		GameObject bubbleClone = (GameObject)Instantiate(Bubble, snappedPosition, Quaternion.identity);
+        bubbleClone.transform.parent = Group;
         try
 		{
-			grid[column, -row] = bubbleClone;
+			Grid[column, -row] = bubbleClone;
 		}
 		catch (System.IndexOutOfRangeException)
 		{
@@ -132,7 +135,7 @@ public class GridManager : MonoBehaviour
 
 		try
 		{
-			grid[column, -row] = bubbleClone;
+			Grid[column, -row] = bubbleClone;
 		}
 		catch (System.IndexOutOfRangeException)	{}
 
@@ -144,7 +147,7 @@ public class GridManager : MonoBehaviour
 	{
 		int[] pair = new int[2] { column, row };
 
-		bool[,] visited = new bool[columns, rows];
+		bool[,] visited = new bool[Columns, Rows];
 
 		visited[column, row] = true;
 
@@ -161,7 +164,7 @@ public class GridManager : MonoBehaviour
 		while (queue.Count != 0)
 		{
 			int[] top = queue.Dequeue();
-			GameObject gtop = grid[top[0], top[1]];
+			GameObject gtop = Grid[top[0], top[1]];
 			if (gtop != null)
 			{
 				objectQueue.Enqueue(gtop);
@@ -178,7 +181,7 @@ public class GridManager : MonoBehaviour
 				neighbor[1] = top[1] + deltay[i];
 				try
 				{
-					GameObject g = grid[neighbor[0], neighbor[1]];
+					GameObject g = Grid[neighbor[0], neighbor[1]];
 					if (g != null)
 					{
 						GridMember gridMember = g.GetComponent<GridMember>();
@@ -204,7 +207,7 @@ public class GridManager : MonoBehaviour
 				GridMember gm = g.GetComponent<GridMember>();
 				if (gm != null)
 				{
-					grid[gm.column, -gm.row] = null;
+					Grid[gm.column, -gm.row] = null;
 					gm.state = "Pop";
 				}
 			}
@@ -220,7 +223,7 @@ public class GridManager : MonoBehaviour
 	public void CheckCeiling(int ceiling)
 	{
 
-		bool[,] visited = new bool[columns, rows];
+		bool[,] visited = new bool[Columns, Rows];
 
 		Queue<int[]> queue = new Queue<int[]>();
 
@@ -228,10 +231,10 @@ public class GridManager : MonoBehaviour
 		int[] deltaxprime = { 1, 0, 1, 0, -1, 1 };
 		int[] deltay = { -1, -1, 1, 1, 0, 0 };
 
-		for (int i = 0; i < columns; i++)
+		for (int i = 0; i < Columns; i++)
 		{
 			int[] pair = new int[2] { i, ceiling };
-			if (grid[i, ceiling] != null)
+			if (Grid[i, ceiling] != null)
 			{
 				visited[i, ceiling] = true;
 				queue.Enqueue(pair);
@@ -257,7 +260,7 @@ public class GridManager : MonoBehaviour
 				neighbor[1] = top[1] + deltay[i];
 				try
 				{
-					GameObject g = grid[neighbor[0], neighbor[1]];
+					GameObject g = Grid[neighbor[0], neighbor[1]];
 					if (g != null)
 					{
 						if (!visited[neighbor[0], neighbor[1]])
@@ -275,21 +278,21 @@ public class GridManager : MonoBehaviour
 
 		if (count == 0)
 		{
-			if (youWin != null)
-				youWin.SetActive(true);
+			if (YouWin != null)
+				YouWin.SetActive(true);
 		}
 
-		for (int r = 0; r < rows; r++)
+		for (int r = 0; r < Rows; r++)
 		{
-			for (int c = 0; c < columns; c++)
+			for (int c = 0; c < Columns; c++)
 			{
-				if (grid[c, r] != null && !visited[c, r])
+				if (Grid[c, r] != null && !visited[c, r])
 				{
-					GameObject g = grid[c, r];
+					GameObject g = Grid[c, r];
 					GridMember gm = g.GetComponent<GridMember>();
 					if (gm != null)
 					{
-						grid[gm.column, -gm.row] = null;
+						Grid[gm.column, -gm.row] = null;
 						gm.state = "Explode";
 					}
 				}
@@ -311,7 +314,7 @@ public class GridManager : MonoBehaviour
 
         for (int i = 0; i < BubbleSpawnRows; i++)
         {
-            int columnnum = 6;
+            int columnnum = 5;
             if (i % 2 == 0) columnnum++;
 
             for (int j = 0; j < columnnum; j++)
@@ -328,14 +331,14 @@ public class GridManager : MonoBehaviour
     private void ArragementBubble(string level)
     {
         int levelpos = 0;
-        for (int r = 0; r < rows; r++)
+        for (int r = 0; r < Rows; r++)
         {
-            if (r % 2 != 0) columns -= 1;
-            for (int c = 0; c < columns; c++)
+            if (r % 2 != 0) Columns -= 1;
+            for (int c = 0; c < Columns; c++)
             {
-                Vector3 position = new Vector3((float)c * gap, (float)(-r) * gap, 0f) + initialPos;
+                Vector3 position = new Vector3((float)c * Gap, (float)(-r) * Gap, 0f) + InitialPos;
                 if (r % 2 != 0)
-                    position.x += 0.5f * gap;
+                    position.x += 0.5f * Gap;
 
                 int newKind = 0;
 
@@ -371,7 +374,7 @@ public class GridManager : MonoBehaviour
                 Create(position, newKind);
                 levelpos++;
             }
-            if (r % 2 != 0) columns += 1;
+            if (r % 2 != 0) Columns += 1;
         }
     }
 

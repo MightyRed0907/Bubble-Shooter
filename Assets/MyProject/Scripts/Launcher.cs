@@ -50,7 +50,7 @@ public class Launcher : MonoBehaviour
             if (count==3)
             {
                 count = 0;
-                FallingDown(grid.initialPos.y, grid.initialPos.y - falldownDistance);
+                FallingDown(grid.InitialPos.y, grid.InitialPos.y - falldownDistance);
             }
         }
     }
@@ -99,7 +99,7 @@ public class Launcher : MonoBehaviour
 
     private void valueProcess(float value)
     {
-        grid.initialPos = new Vector3(grid.initialPos.x, value, grid.initialPos.z);
+        grid.InitialPos = new Vector3(grid.InitialPos.x, value, grid.InitialPos.z);
     }
     #endregion
 }
