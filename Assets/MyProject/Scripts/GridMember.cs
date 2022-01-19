@@ -8,9 +8,9 @@ public class GridMember : MonoBehaviour
     public Sprite[] sp;
 	public GameObject efxPrefabBlock;
     public GameObject efxPrefabPop;
-	public int row;
-	public int column;
-	public int kind;
+	public int Row;
+	public int Column;
+	public int Kind;
 	public string state;
 
 
@@ -38,6 +38,7 @@ public class GridMember : MonoBehaviour
 	{
 		if (state == "Block")
 		{
+			/** Destory the bubble. */
 			CircleCollider2D cc = GetComponent<CircleCollider2D>();
 			if (cc != null)
 				cc.enabled = false;

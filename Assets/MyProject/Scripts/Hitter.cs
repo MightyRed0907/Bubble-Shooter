@@ -21,24 +21,27 @@ public class Hitter : MonoBehaviour
 
     void Start()
 	{
-        spHint.sprite = sp[kind-1];
+        //spHint.sprite = sp[kind-1];
+        spHint.sprite = sp[6];
         thissprenderer.enabled = false;
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 		if (spriteRenderer != null)
 		{
 			Color[] colorArray = new Color[] { Color.red, Color.cyan, Color.yellow, Color.green, Color.magenta };
-            spriteRenderer.sprite = sp[kind - 1];
+            //spriteRenderer.sprite = sp[kind - 1];
+            spriteRenderer.sprite = sp[6];
 
-   //         if (kind == 6)
-			//{
-			//	spriteRenderer.sprite = specialBubble;
-			//}
-			//else
-			//{
-   //             spriteRenderer.color = colorArray[kind - 1];
-   //         }
-		}
+
+            //         if (kind == 6)
+            //{
+            //	spriteRenderer.sprite = specialBubble;
+            //}
+            //else
+            //{
+            //             spriteRenderer.color = colorArray[kind - 1];
+            //         }
+        }
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
@@ -61,10 +64,14 @@ public class Hitter : MonoBehaviour
                     {
                         GridMember gridMember = newBubble.GetComponent<GridMember>();
                         if (gridMember != null)
-                            gridManager.Seek(gridMember.column, -gridMember.row, gridMember.kind);
+                            //gridManager.Seek(gridMember.column, -gridMember.row, gridMember.kind);
+                            gridManager.CompareValue(gridMember.Column, -gridMember.Row, gridMember.Value);
+
+                        /** Destory it. */
                         gridMember.state = "Block";
                     }
                 }
+
                 Launcher launcher = parent.GetComponent<Launcher>();
                 if (launcher != null)
                 {

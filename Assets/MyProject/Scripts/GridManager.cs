@@ -27,7 +27,7 @@ public class GridManager : MonoBehaviour
     [Header("Fall down controller")]
     public Transform Compressor;
 
-    private GameObject[,] Grid;
+    GameObject[,] Grid;
 
     private void Awake()
     {
@@ -110,20 +110,20 @@ public class GridManager : MonoBehaviour
 		{
 
 			//gridMember.parent = gameObject;
-			gridMember.row = row;
-			gridMember.column = column;
+			gridMember.Row = row;
+			gridMember.Column = column;
 			if (kind == 6)
 			{
-				gridMember.kind = (int)Random.Range(1f, 6f);
+				gridMember.Kind = (int)Random.Range(1f, 6f);
 			}
 			else
 			{
-				gridMember.kind = kind;
+				gridMember.Kind = kind;
 			}
 
 			SpriteRenderer spriteRenderer = bubbleClone.GetComponent<SpriteRenderer>();
 			if (spriteRenderer != null)			
-                spriteRenderer.sprite = gridMember.sp[gridMember.kind - 1];
+                spriteRenderer.sprite = gridMember.sp[gridMember.Kind - 1];
 
 			// Set value
 			gridMember.Value = Random.Range(1, 6);
@@ -142,6 +142,62 @@ public class GridManager : MonoBehaviour
 		return bubbleClone;
 	}
 
+	/*** Get the count of members in a row. */
+	int GetMemberCountInRow(int row)
+	{ 
+		int i = 0;
+		try { while (Grid[i, row] != null) i++; }
+		catch { }
+		return i;
+    }
+
+	/*** Get the upper members of new spawned member. */
+	List<GameObject> GetUpperMember(int column, int row)
+    {
+		List<GameObject> upperMembers = new List<GameObject>();
+		try
+		{
+			int i = 0;
+			while (i < Columns)
+			{
+				if (Vector3.Distance(Grid[column, row].transform.position, Grid[i, row - 1].transform.position) < 1f)
+					upperMembers.Add(Grid[i, row - 1]);
+				i++;
+			}
+		}
+		catch { }
+
+		return upperMembers;
+	}
+
+	/*** Destroy all bubble in a row. */
+	void DestroyRow(int row)
+    {
+		int i = 0;
+		try 
+		{
+			while (Grid[i, row] != null)
+			{
+				Grid[i, row].GetComponent<GridMember>().state = "Pop";
+				Grid[i, row] = null;
+				i++;
+			}
+		}
+		catch { }
+	}
+
+	public void CompareValue(int column, int row, int value)
+    {
+        //Debug.LogError(GetMemberCountInRow(row - 1));
+        foreach (var member in GetUpperMember(column, row))
+        {
+            if (member.GetComponent<GridMember>().Value == 1)
+            {
+				DestroyRow(row - 1);
+				return;
+            }
+        }
+    }
 
 	public void Seek(int column, int row, int kind)
 	{
@@ -185,7 +241,7 @@ public class GridManager : MonoBehaviour
 					if (g != null)
 					{
 						GridMember gridMember = g.GetComponent<GridMember>();
-						if (gridMember != null && gridMember.kind == kind)
+						if (gridMember != null && gridMember.Kind == kind)
 						{
 							if (!visited[neighbor[0], neighbor[1]])
 							{
@@ -207,7 +263,7 @@ public class GridManager : MonoBehaviour
 				GridMember gm = g.GetComponent<GridMember>();
 				if (gm != null)
 				{
-					Grid[gm.column, -gm.row] = null;
+					Grid[gm.Column, -gm.Row] = null;
 					gm.state = "Pop";
 				}
 			}
@@ -292,7 +348,7 @@ public class GridManager : MonoBehaviour
 					GridMember gm = g.GetComponent<GridMember>();
 					if (gm != null)
 					{
-						Grid[gm.column, -gm.row] = null;
+						Grid[gm.Column, -gm.Row] = null;
 						gm.state = "Explode";
 					}
 				}
