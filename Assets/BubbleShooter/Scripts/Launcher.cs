@@ -28,7 +28,7 @@ public class Launcher : MonoBehaviour
         Load();
 	}
 
-    private void Update()
+    private void Update()   
 	{
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 delta = mousePos - new Vector2(transform.position.x, transform.position.y);

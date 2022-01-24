@@ -59,7 +59,7 @@ public class Hitter : MonoBehaviour
                 GridManager gridManager = parent.GetComponent<GridManager>();
                 if (gridManager != null)
                 {
-                    GameObject newBubble = gridManager.Create(transform.position, kind);
+                    GameObject newBubble = gridManager.Create(transform.position, kind, false, 0);
                     if (newBubble != null)
                     {
                         GridMember gridMember = newBubble.GetComponent<GridMember>();

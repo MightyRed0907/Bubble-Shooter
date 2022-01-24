@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class GridManager : MonoBehaviour
 
     GameObject[,] Grid;
 
+	[SerializeField]
+	private int[] left, right, answer;
+
+	private int count = 0;
+	[SerializeField]
+	private Text question;
+
+	private static string[] op = { "+", "-" };
+
+
     private void Awake()
     {
 		/** Set position of bubble group */
@@ -39,10 +50,27 @@ public class GridManager : MonoBehaviour
 
     private void Start()
 	{
+		left = new int[Rows];
+		right = new int[Rows];
+		answer = new int[Rows];
+		CreateProblem();
+		question.text = $"{left[0]} - {right[0]}";
 		Grid = new GameObject[Columns, Rows];
 
 		string level = LoadLevelInfo();
         ArragementBubble(level);
+	}
+
+	private void CreateProblem()
+    {
+		for(int i = 0; i < Rows; i++)
+        {
+			left[i] = Random.Range(1, 9);
+			right[i] = left[i] == 1 ? 0 : Random.Range(left[i] - 5 < 1 ? 1 : left[i] - 5, left[i]);
+			answer[i] = left[i] - right[i];
+		}
+		
+		
 	}
 
     private void Update()
@@ -76,7 +104,7 @@ public class GridManager : MonoBehaviour
 		return InitialPos + objectSnap * Gap;
 	}
 
-    public GameObject Create(Vector2 position, int kind)
+    public GameObject Create(Vector2 position, int kind, bool isAnswer, int index)
 	{
 		Vector3 snappedPosition = Snap(position);
 		int row = (int)Mathf.Round((snappedPosition.y - InitialPos.y) / Gap);
@@ -126,7 +154,8 @@ public class GridManager : MonoBehaviour
                 spriteRenderer.sprite = gridMember.sp[gridMember.Kind - 1];
 
 			// Set value
-			gridMember.Value = Random.Range(1, 6);
+
+			gridMember.Value = isAnswer ? answer[19 - index] : Random.Range(1, 6);
 		}
 		bubbleClone.SetActive(true);
 
@@ -191,9 +220,11 @@ public class GridManager : MonoBehaviour
         //Debug.LogError(GetMemberCountInRow(row - 1));
         foreach (var member in GetUpperMember(column, row))
         {
-            if (member.GetComponent<GridMember>().Value == 1)
+            if (member.GetComponent<GridMember>().Value == left[count] - right[count])
             {
 				DestroyRow(row - 1);
+				count++;
+				question.text = $"{left[count]} - {right[count]}";
 				return;
             }
         }
@@ -390,7 +421,11 @@ public class GridManager : MonoBehaviour
         for (int r = 0; r < Rows; r++)
         {
             if (r % 2 != 0) Columns -= 1;
-            for (int c = 0; c < Columns; c++)
+
+			int answerIndex = Random.Range(0, Columns);
+
+
+			for (int c = 0; c < Columns; c++)
             {
                 Vector3 position = new Vector3((float)c * Gap, (float)(-r) * Gap, 0f) + InitialPos;
                 if (r % 2 != 0)
@@ -427,7 +462,10 @@ public class GridManager : MonoBehaviour
                 if (level[levelpos] == '5')
                     newKind = 5;
 
-                Create(position, newKind);
+				if(c == answerIndex)
+					Create(position, newKind, true, r);
+				else
+					Create(position, newKind, false, r);
                 levelpos++;
             }
             if (r % 2 != 0) Columns += 1;
