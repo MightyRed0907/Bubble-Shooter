@@ -30,11 +30,15 @@ public class GridMember : MonoBehaviour
 
 	public const float POP_SPEED = 0.9f;
 	public const float EXPLODE_SPEED = 5f;
-	public const float KILL_Y = -30f;
+	public float KILL_Y = -20f;
 
     private bool efxFlag = false;
 
-	public void Update()
+    public void Start()
+    {
+		KILL_Y = -20f - PlayerPrefs.GetInt("difficulty") * 2;
+    }
+    public void Update()
 	{
 		if (state == "Block")
 		{

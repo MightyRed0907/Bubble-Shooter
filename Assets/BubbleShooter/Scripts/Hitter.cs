@@ -64,7 +64,7 @@ public class Hitter : MonoBehaviour
                     {
                         GridMember gridMember = newBubble.GetComponent<GridMember>();
                         if (gridMember != null)
-                            //gridManager.Seek(gridMember.column, -gridMember.row, gridMember.kind);
+                            //gridManager.Seek(gridMember.Column, -gridMember.Row, gridMember.Kind);
                             gridManager.CompareValue(gridMember.Column, -gridMember.Row, gridMember.Value);
 
                         /** Destory it. */

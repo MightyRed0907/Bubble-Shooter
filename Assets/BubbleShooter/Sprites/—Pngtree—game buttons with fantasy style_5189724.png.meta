@@ -1,0 +1,534 @@
+fileFormatVersion: 2
+guid: 5c834692781299849a9ba4981c43dba2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6212512864405127748
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_0"
+  - first:
+      213: 6125990113718740803
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_1"
+  - first:
+      213: -8031599475472376208
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_2"
+  - first:
+      213: 8839812784450604626
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_3"
+  - first:
+      213: 5639930744332040846
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_4"
+  - first:
+      213: 2993965769709087384
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_5"
+  - first:
+      213: 5772217972065921953
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_6"
+  - first:
+      213: -7448686573395871980
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_7"
+  - first:
+      213: 6792690438322372497
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_8"
+  - first:
+      213: -5765849442074131494
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_9"
+  - first:
+      213: 8117827830057776464
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_10"
+  - first:
+      213: 8705311554263963078
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_11"
+  - first:
+      213: 1035343352715445112
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_12"
+  - first:
+      213: -1731330360184912665
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_13"
+  - first:
+      213: 1729046561015228492
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_14"
+  - first:
+      213: -4533656963427885746
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_15"
+  - first:
+      213: 2255610162637848287
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_16"
+  - first:
+      213: -4389525974029218291
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_17"
+  - first:
+      213: 1947558943447686784
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_18"
+  - first:
+      213: -8454593899968405289
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_19"
+  - first:
+      213: 8711250962381027203
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_20"
+  - first:
+      213: -7131428922570605670
+    second: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_21"
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_1"
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 1627
+        width: 1499
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347a2c13d83e30550800000000000000
+      internalID: 6125990113718740803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_3"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1317
+        width: 1419
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e822264e25daa70800000000000000
+      internalID: 8839812784450604626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_4"
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 996
+        width: 410
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a37bd512f054e40800000000000000
+      internalID: 5639930744332040846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_7"
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 918
+        width: 819
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417748db603f0a890800000000000000
+      internalID: -7448686573395871980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_8"
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 914
+        width: 329
+        height: 342
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fb565e6fb744e50800000000000000
+      internalID: 6792690438322372497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_9"
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 641
+        width: 404
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad389c03b769bffa0800000000000000
+      internalID: -5765849442074131494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_12"
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 530
+        width: 819
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8738a273b474e5e00800000000000000
+      internalID: 1035343352715445112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_13"
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 526
+        width: 329
+        height: 342
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4445cd53419f7e0800000000000000
+      internalID: -1731330360184912665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_14"
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 279
+        width: 140
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c486c65bfaecef710800000000000000
+      internalID: 1729046561015228492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_15"
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 388
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d976913073511c0800000000000000
+      internalID: -4533656963427885746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_16"
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 257
+        width: 140
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde3acffd798d4f10800000000000000
+      internalID: 2255610162637848287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_17"
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 379
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0e43a122654513c0800000000000000
+      internalID: -4389525974029218291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_18"
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 140
+        width: 819
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e955b5a8e170b10800000000000000
+      internalID: 1947558943447686784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_19"
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 147
+        width: 329
+        height: 342
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0e23074af3baa80800000000000000
+      internalID: -8454593899968405289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_20"
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 158
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387300a989494e870800000000000000
+      internalID: 8711250962381027203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game buttons with fantasy style_5189724_21"
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 149
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b7b39cd23180d90800000000000000
+      internalID: -7131428922570605670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

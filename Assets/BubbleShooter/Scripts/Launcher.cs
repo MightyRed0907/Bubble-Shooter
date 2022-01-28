@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Launcher : MonoBehaviour
+public class Launcher : Singleton<Launcher>
 {
 	public GameObject Bubble_shootball;
 
@@ -36,24 +36,36 @@ public class Launcher : MonoBehaviour
         float clampValue = Mathf.Clamp(-Mathf.Rad2Deg * Mathf.Atan2(delta.x, delta.y), -60, 60);
 		transform.rotation = Quaternion.Euler(0f, 0f, clampValue);
 
-        if (Input.GetMouseButtonDown(0) && Time.time > nextFire && startShooting)
+        if (startShooting)
         {
-            /// Shoot cool down
-            nextFire = Time.time + fireRate;
-            Fire();
-
-            /// Show ball sprite
-            gotemp.GetComponent<SpriteRenderer>().enabled = true;
-
-            ///  Falling 
-            count++;
-            if (count==3)
+            if (Input.GetMouseButtonDown(1) && Time.time > nextFire)
             {
-                count = 0;
-                FallingDown(grid.InitialPos.y, grid.InitialPos.y - falldownDistance);
+                /// Shoot cool down
+                nextFire = Time.time + fireRate;
+                Fire();
+
+                /// Show ball sprite
+                gotemp.GetComponent<SpriteRenderer>().enabled = true;
+
+                ///  Falling 
+                count++;
+                if (count == 1)
+                {
+                    count = 0;
+                    FallingDown(grid.InitialPos.y, grid.InitialPos.y - falldownDistance);
+                }
             }
+
+            GridManager.Instance.Group.transform.position =
+                new Vector3(0,
+                GridManager.Instance.Group.transform.position.y - Time.deltaTime / (30 - 6 * PlayerPrefs.GetInt("difficulty")),
+                0);
         }
+
+
+
     }
+
 
 
     public void Load()

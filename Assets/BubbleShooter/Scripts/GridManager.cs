@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.UI;
 
-public class GridManager : MonoBehaviour
+public class GridManager : Singleton<GridManager>
 {
     [Header("Grid")]
     public int Columns = 6;
-    public int Rows = 20;
+    public int Rows = 10;
 	public int BubbleSpawnRows = 10;
 
 	public GameObject Bubble;
     public Transform Group;
 	public int BubbleTypes = 5;
 	
-    public Vector3 InitialPos = new Vector3(-1.65f, 7, 0);
+    public Vector3 InitialPos = new Vector3(-1.65f, 1, 0);
 	
     [Range(0, 1)]
     public float Gap = 0.65f;
@@ -30,14 +30,14 @@ public class GridManager : MonoBehaviour
 
     GameObject[,] Grid;
 
-	[SerializeField]
+	
 	private int[] left, right, answer;
 
-	private int count = 0;
+	private char[] oper;
+ 
+	private int count = 9;
 	[SerializeField]
 	private Text question;
-
-	private static string[] op = { "+", "-" };
 
 
     private void Awake()
@@ -45,29 +45,58 @@ public class GridManager : MonoBehaviour
 		/** Set position of bubble group */
 		Compressor.Translate(new Vector3(0, InitialPos.y - Compressor.position.y, 0));
 
-		if (Rows < BubbleSpawnRows + 10) Rows = BubbleSpawnRows + 10;
+		//if (Rows < BubbleSpawnRows + 10) Rows = BubbleSpawnRows + 10;
 	}
 
     private void Start()
 	{
+		//Application.targetFrameRate = 10;
 		left = new int[Rows];
 		right = new int[Rows];
 		answer = new int[Rows];
+		oper = new char[Rows];
 		CreateProblem();
-		question.text = $"{left[0]} - {right[0]}";
+		question.text = $"{left[count]} {oper[count]} {right[count]}";
 		Grid = new GameObject[Columns, Rows];
 
 		string level = LoadLevelInfo();
         ArragementBubble(level);
+		//Group.transform.position = new Vector3(0, 2.08f - (PlayerPrefs.GetInt("difficulty") - 1) * Gap * 1.4f, 0);
 	}
 
 	private void CreateProblem()
     {
-		for(int i = 0; i < Rows; i++)
+		string temp = PlayerPrefs.GetString("level");
+		char[] op = new char[temp.Length];
+		op = temp.ToCharArray();
+		for (int i = 0; i < 10; i++)
         {
-			left[i] = Random.Range(1, 9);
-			right[i] = left[i] == 1 ? 0 : Random.Range(left[i] - 5 < 1 ? 1 : left[i] - 5, left[i]);
-			answer[i] = left[i] - right[i];
+			//left[i] = Random.Range(2, 9);
+			//right[i] = Random.Range(left[i] - 5 < 1 ? 1 : left[i] - 5, left[i]);
+			oper[i] = op[Random.Range(0, op.Length)];
+			switch(oper[i])
+            {
+				case '+':
+					left[i] = Random.Range(1, 99);
+					right[i] = Random.Range(1, 100 - left[i]);
+					answer[i] = left[i] + right[i];
+					break;
+				case '-':
+					right[i] = Random.Range(1, 99);
+					left[i] = Random.Range(right[i] + 1, 100);
+					answer[i] = left[i] - right[i];
+					break;
+				case 'x':
+					left[i] = Random.Range(2, 51);
+					right[i] = Random.Range(2, 100 / left[i]);
+					answer[i] = left[i] * right[i];
+					break;
+				case '÷':
+					answer[i] = Random.Range(2, 51);
+					right[i] = Random.Range(2, 100 / answer[i]);
+					left[i] = right[i] * answer[i];
+					break;
+			}
 		}
 		
 		
@@ -75,7 +104,7 @@ public class GridManager : MonoBehaviour
 
     private void Update()
     {
-        Compressor.position = new Vector3(Compressor.position.x, InitialPos.y, Compressor.position.z);
+        Compressor.position = new Vector3(Compressor.position.x, InitialPos.y , Compressor.position.z);
     }
 
     private void OnDrawGizmos()
@@ -104,8 +133,9 @@ public class GridManager : MonoBehaviour
 		return InitialPos + objectSnap * Gap;
 	}
 
-    public GameObject Create(Vector2 position, int kind, bool isAnswer, int index)
+    public GameObject Create(Vector2 position, int kind, bool isAnswer, int val)
 	{
+		
 		Vector3 snappedPosition = Snap(position);
 		int row = (int)Mathf.Round((snappedPosition.y - InitialPos.y) / Gap);
 		int column = 0;
@@ -154,8 +184,24 @@ public class GridManager : MonoBehaviour
                 spriteRenderer.sprite = gridMember.sp[gridMember.Kind - 1];
 
 			// Set value
-
-			gridMember.Value = isAnswer ? answer[19 - index] : Random.Range(1, 6);
+			if (isAnswer)
+			{
+				gridMember.Value = val;
+			}
+			else
+			{
+				int temp;
+				if (Random.Range(0, 2) == 1)
+                {
+					temp = val + Random.Range(1, 11);
+					gridMember.Value = temp >= 100 ? 99 : temp;
+				}
+				else
+				{
+					temp = val + Random.Range(-10, 0);
+					gridMember.Value = temp <= 0 ? 1 : temp;
+				}
+			}
 		}
 		bubbleClone.SetActive(true);
 
@@ -220,15 +266,40 @@ public class GridManager : MonoBehaviour
         //Debug.LogError(GetMemberCountInRow(row - 1));
         foreach (var member in GetUpperMember(column, row))
         {
-            if (member.GetComponent<GridMember>().Value == left[count] - right[count])
+            if (member.GetComponent<GridMember>().Value == answer[count])
             {
 				DestroyRow(row - 1);
-				count++;
-				question.text = $"{left[count]} - {right[count]}";
+				count--;
+				if (count > -1)
+				{
+					question.text = $"{left[count]} {oper[count]} {right[count]}";
+				}
+				else
+				{
+					//GameObject.Find("youwin2").transform.position = new Vector3(0, 0.58f, 0);
+					FindInActiveObjectByName("youwin2").SetActive(true);
+					Launcher.Instance.startShooting = false;
+				}
 				return;
             }
         }
     }
+
+	GameObject FindInActiveObjectByName(string name)
+	{
+		Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+		for (int i = 0; i < objs.Length; i++)
+		{
+			if (objs[i].hideFlags == HideFlags.None)
+			{
+				if (objs[i].name == name)
+				{
+					return objs[i].gameObject;
+				}
+			}
+		}
+		return null;
+	}
 
 	public void Seek(int column, int row, int kind)
 	{
@@ -424,7 +495,6 @@ public class GridManager : MonoBehaviour
 
 			int answerIndex = Random.Range(0, Columns);
 
-
 			for (int c = 0; c < Columns; c++)
             {
                 Vector3 position = new Vector3((float)c * Gap, (float)(-r) * Gap, 0f) + InitialPos;
@@ -463,9 +533,9 @@ public class GridManager : MonoBehaviour
                     newKind = 5;
 
 				if(c == answerIndex)
-					Create(position, newKind, true, r);
+					Create(position, newKind, true, answer[r]);
 				else
-					Create(position, newKind, false, r);
+					Create(position, newKind, false, answer[r]);
                 levelpos++;
             }
             if (r % 2 != 0) Columns += 1;
