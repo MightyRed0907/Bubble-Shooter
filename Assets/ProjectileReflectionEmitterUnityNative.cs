@@ -30,8 +30,8 @@ public class ProjectileReflectionEmitterUnityNative : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Handles.color = Color.red;
-        Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.25f, this.transform.rotation, 0.5f, EventType.Repaint);
+        //Handles.color = Color.red;
+        //Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.25f, this.transform.rotation, 0.5f, EventType.Repaint);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, 0.25f);
         
